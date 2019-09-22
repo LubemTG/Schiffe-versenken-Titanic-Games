@@ -58,13 +58,13 @@ public class GUITest extends JFrame {
         newButton.setBounds((x*40),(y*40),40,40);
         newButton.setContentAreaFilled(true);
         newButton.setText("");
-        newButton.setIcon(new ImageIcon("G:\\Info\\Schiffe versenken\\neusteVersion\\wasser.png"));
+        newButton.setIcon(new ImageIcon("wasser.png"));
         newButton.setMargin(new Insets(2, 2, 2, 2));
         newButton.addActionListener(new ActionListener() { 
           public void actionPerformed(ActionEvent evt) { 
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-              newButton.setIcon(new ImageIcon("G:\\Info\\Schiffe versenken\\neusteVersion\\schiff.png"));
+              newButton.setIcon(new ImageIcon("schiff.png"));
             }
           }
         });
@@ -86,12 +86,12 @@ public class GUITest extends JFrame {
         newButton.setContentAreaFilled(true);
         newButton.setText("");                                     
         newButton.setMargin(new Insets(2, 2, 2, 2));
-        newButton.setIcon(new ImageIcon("G:\\Info\\Schiffe versenken\\neusteVersion\\nebel.png"));
+        newButton.setIcon(new ImageIcon("nebel.png"));
         newButton.addActionListener(new ActionListener() { 
           public void actionPerformed(ActionEvent evt) { 
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-              newButton.setIcon(new ImageIcon("G:\\Info\\Schiffe versenken\\neusteVersion\\wasser.png"));
+              newButton.setIcon(new ImageIcon("wasser.png"));
             }
           }
         });
