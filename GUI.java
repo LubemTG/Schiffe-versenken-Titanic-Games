@@ -260,8 +260,12 @@ public class GUI extends JFrame {
   int u = 4;      // begrenzt Anzahl
   
   public void setzteUBoot(){
-    final JButton ubootButton = new JButton();
     Container cp = getContentPane();
+    final JTextField anzahlUBoote = new JTextField();
+    anzahlUBoote.setBounds(1120, 880, 200, 40);
+    anzahlUBoote.setText("Noch "+u+" Schlachtschiffe übrig.");
+    cp.add(anzahlUBoote);
+    final JButton ubootButton = new JButton();
     ubootButton.setBounds(1120, 750, 200, 120);
     ubootButton.setText("");
     ubootButton.setMargin(new Insets(2, 2, 2, 2));
