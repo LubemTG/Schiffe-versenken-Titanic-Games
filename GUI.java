@@ -29,14 +29,15 @@ public class GUI extends JFrame {
   int b = 0;
   
   private LucaButton[][] buttons = new LucaButton[15][15];
+  private LucaButton[][] gegnerbuttons = new LucaButton[15][15];
   
   public GUI(String title) {
     // Frame-Initialisierung
     super(title);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     
-    int frameWidth = 1500; 
-    int frameHeight = 1000;
+    int frameWidth = 1680; 
+    int frameHeight = 1050;
     setSize(frameWidth, frameHeight);
     
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -47,7 +48,12 @@ public class GUI extends JFrame {
     
     erstelleEigenesButtonFeld();
     erstelleGegnerischesButtonFeld();
+    setzteSchlachtschiff();
+    setzteKreuzer();
+    setzteZerstoerer();
+    setzteUBoot();
     setVisible(true);
+    
   }
   
   
@@ -64,7 +70,7 @@ public class GUI extends JFrame {
         newButton.setBounds((x*40),(y*40),40,40);
         newButton.setContentAreaFilled(true);
         newButton.setText("");
-        newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projeksemester-Schiffe-versenken\\wasser.png"));
+        newButton.setIcon(new ImageIcon("Wasser-Icon.png"));
         newButton.setMargin(new Insets(2, 2, 2, 2));
         newButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent evt) {
@@ -75,7 +81,6 @@ public class GUI extends JFrame {
                 int b = ((LucaButton) evt.getSource()).getB();
                 eA[a][b] = 1;
                 s++;
-                newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projeksemester-Schiffe-versenken\\schiff.png"));
               }
               /*if (s==30) {
               for (int b = 1; b<15; b++) {
@@ -103,17 +108,17 @@ public class GUI extends JFrame {
         LucaButton newButton = new LucaButton(a,b);
         Container cp = getContentPane();
         cp.setLayout(null);
-        buttons[x][y] = newButton;
+        gegnerbuttons[x][y] = newButton;
         newButton.setBounds((x*40+600),(y*40),40,40);
         newButton.setContentAreaFilled(true);
         newButton.setText("");                                     
         newButton.setMargin(new Insets(2, 2, 2, 2));
-        newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projeksemester-Schiffe-versenken\\nebel.png"));
+        newButton.setIcon(new ImageIcon("nebel.png"));
         newButton.addActionListener(new ActionListener() { 
           public void actionPerformed(ActionEvent evt) { 
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-              newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projeksemester-Schiffe-versenken\\wasser.png"));
+              newButton.setIcon(new ImageIcon("Wasser-Icon.png"));
             }
           }
         });
@@ -121,26 +126,44 @@ public class GUI extends JFrame {
       }
     }
   }
-  /* 
+  
   public void vergleicheFelder(){
-  int g = 0;
-  while (s<30) { 
-  System.out.println(g);
-  g++;
-  } // end of while
-  for (int b = 1; b<15; b++) {
-  for (int a = 1; a<15; a++) {
-  if (eA[a][b] == 1) {
-  newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projektsemester-Schiffe-versenken\\schiff.png"));
-  } // end of if
-  } // end of for
-  } // end of for
+    int g =0;
+    while (s<30) { 
+      g++;
+      System.out.println('g');
+    } // end of while
+    for (int b = 1; b<15; b++) {
+      for (int a = 1; a<15; a++) {
+        if (eA[a][b] == 1) {
+          buttons[a][b].setIcon(new ImageIcon("schiff.png"));
+        } // end of if
+      } // end of for
+    } // end of for
   }
+  int r = 1;   // begrenzt Anzahl
   
-  int r = ;   // begrenzt Anzahl
-  
-  public void setzteSchlachstschiff{
-  if (get.source ) {         //angesteuerter Button
+  public void setzteSchlachtschiff(){
+    final JButton schlachtschiffButton = new JButton();
+    Container cp = getContentPane();
+    schlachtschiffButton.setBounds(50, 700, 390, 220);
+    schlachtschiffButton.setText("");
+    schlachtschiffButton.setMargin(new Insets(2, 2, 2, 2));
+    schlachtschiffButton.setIcon(new ImageIcon("schlachtschiff 5felder transparent.png"));
+    schlachtschiffButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == schlachtschiffButton){
+        }
+      }
+    });
+    cp.add(schlachtschiffButton);
+  }
+  /*
+  public void setzteSchlachtschiff(){if
+  (evt.getSource() == buttons){
+  if (s<30) {
+  int a = ((buttons) evt.getSource()).getA();
+  int b = ((buttons) evt.getSource()).getB();
   if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
   eA[a][b] = 1;
   eA[a+1][b]= 1;
@@ -157,12 +180,28 @@ public class GUI extends JFrame {
   eA[a][b+4]= 1;
   r--;
   } // end of if-else
-  } // end of if
   }
+  } // end of if
+  */
   
-  int k = ;     // begrenzt Anzahl
+  //int k =2;     // begrenzt Anzahl
   
-  public void setzteKreuzer{
+  public void setzteKreuzer(){
+    final JButton kreuzerButton = new JButton();
+    Container cp = getContentPane();
+    kreuzerButton.setBounds(490, 710, 300, 200);
+    kreuzerButton.setText("");
+    kreuzerButton.setMargin(new Insets(2, 2, 2, 2));
+    kreuzerButton.setIcon(new ImageIcon("kreuzer 4felder transparent.png"));
+    kreuzerButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == kreuzerButton){
+        }
+      }
+    });
+    cp.add(kreuzerButton);
+  }
+  /*
   if (get.source ) {         //angesteuerter Button
   if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
   eA[a][b] = 1;
@@ -182,8 +221,23 @@ public class GUI extends JFrame {
   }
   
   int z = ;         // begrenzt Anzahl
-  
-  public void setzteZerstoerer{
+  */
+  public void setzteZerstoerer(){
+    final JButton zerstoererButton = new JButton();
+    Container cp = getContentPane();
+    zerstoererButton.setBounds(840, 730, 230, 160);
+    zerstoererButton.setText("");
+    zerstoererButton.setMargin(new Insets(2, 2, 2, 2));
+    zerstoererButton.setIcon(new ImageIcon("zerstörer 3felder transparent.png"));
+    zerstoererButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == zerstoererButton){
+        }
+      }
+    });
+    cp.add(zerstoererButton);
+  }
+  /*
   if (z<0) {
   if (get.source ) {         //angesteuerter Button 
   if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
@@ -201,12 +255,26 @@ public class GUI extends JFrame {
   } // end of if
   }
   }
-  
+  */
   
   int u = 4;      // begrenzt Anzahl
   
-  public void setzteUBoot{
-  if (u<0) {
+  public void setzteUBoot(){
+    final JButton ubootButton = new JButton();
+    Container cp = getContentPane();
+    ubootButton.setBounds(1120, 750, 200, 120);
+    ubootButton.setText("");
+    ubootButton.setMargin(new Insets(2, 2, 2, 2));
+    ubootButton.setIcon(new ImageIcon("uboot 2felder transparent.png"));
+    ubootButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == ubootButton){
+        }
+      }
+    });
+    cp.add(ubootButton);
+  }
+  /*if (u<0) {
   if (get.source ) {         //angesteuerter Button
   if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
   eA[a][b] = 1;
@@ -226,6 +294,7 @@ public class GUI extends JFrame {
   */
   public static void main(String[] args){
     GUI meinGUI= new GUI("Schiffe versenken");
+    meinGUI.vergleicheFelder();
   }
   public void newButton_ActionPerformed(ActionEvent evt) {
   }
