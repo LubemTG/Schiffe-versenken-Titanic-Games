@@ -19,10 +19,9 @@ public class GUI extends JFrame {
   // Anfang Attribute
   
   int i, j, k, l;
-  int[][] eA = new int [15][15];
+  int[][] eA = new int [16][16];
   int[][] gA = new int [15][15];
   
-  int s = 0;
   
   int a = 0;
   
@@ -77,24 +76,113 @@ public class GUI extends JFrame {
           public void actionPerformed(ActionEvent evt) {
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-              if (s<30) {
-                int a = ((LucaButton) evt.getSource()).getA();
-                int b = ((LucaButton) evt.getSource()).getB();
-                eA[a][b] = 1;
-                s++;
-              }
-              /*if (s==30) {
-              for (int b = 1; b<15; b++) {
-              for (int a = 1; a<15; a++) {
-              if (eA[a][b] == 1) {
-              newButton.setIcon(new ImageIcon("C:\\Users\\Luca\\Documents\\GitHub\\Projeksemester-Schiffe-versenken\\schiff.png"));
-              } // end of if
-              } // end of for
-              } // end of for               
-              } // end of if
-              */
+                if (uboot == 1) {
+                   if (u>0) {
+                  int a = ((LucaButton) evt.getSource()).getA();
+                  int b = ((LucaButton) evt.getSource()).getB();
+                  if (w == 1) {
+                    if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && b+1<16) {
+                      eA[a][b] = 1;
+                      eA[a][b+1] = 1;
+                      uboot = 0;
+                      u--;
+                    } // end of if
+                  } // end of if
+                  else {
+                    if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && a+1<16) {
+                    eA[a][b] = 1;
+                    eA[a+1][b] = 1;
+                    uboot = 0;
+                    u--;
+                      }
+                  } // end of if-else
+                  vergleicheFelder();
+                  
+                } 
+                } // end of if
             } // end of if
-          }
+            if (zerstoerer == 1) {
+                   if (z>0) {
+                      int a = ((LucaButton) evt.getSource()).getA();
+                      int b = ((LucaButton) evt.getSource()).getB();
+                       if (w == 1) {
+                          if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && b+2<16) {
+                             eA[a][b] = 1;
+                             eA[a][b+1] = 1;
+                             eA[a][b+2] = 1;
+                             zerstoerer = 0;
+                             z--;
+                          }
+                       } // end of if
+                       else {
+                          if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b-1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a+3][b-1] == 0 && eA[a+3][b] == 0 && eA[a+3][b+1] == 0 && a+2<16) {
+                             eA[a][b] = 1;
+                             eA[a+1][b] = 1;
+                             eA[a+2][b] = 1;
+                             zerstoerer = 0;
+                             z--;
+                    }
+                  } // end of if-else
+                  vergleicheFelder();
+                } 
+                } // end of if
+                if (kreuzer == 1) {
+                   if (h>0) {
+                      int a = ((LucaButton) evt.getSource()).getA();
+                      int b = ((LucaButton) evt.getSource()).getB();
+                          if (w == 1) {
+                          if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && eA[a-1][b+4] == 0 && eA[a][b+4] == 0 && eA[a+1][b+4] == 0  && b+3<16) {
+                             eA[a][b] = 1;
+                             eA[a][b+1] = 1;
+                             eA[a][b+2] = 1;
+                             eA[a][b+3] = 1;
+                             kreuzer = 0;
+                             h--;
+                             }
+                          } // end of if
+                          else {
+                          if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b-1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a+3][b-1] == 0 && eA[a+3][b] == 0 && eA[a+3][b+1] == 0 && eA[a+4][b-1] == 0 && eA[a+4][b] == 0 && eA[a+4][b+1] == 0 && a+3<16) {
+                             eA[a][b] = 1;
+                             eA[a+1][b] = 1;
+                             eA[a+2][b] = 1;
+                             eA[a+3][b] = 1;
+                             kreuzer = 0;
+                             h--;     
+                             }
+                          } // end of if-else
+                  vergleicheFelder(); 
+                } // end of if
+            } // end of if
+            if (schlachtschiff == 1) {
+                   if (r>0) {
+                      int a = ((LucaButton) evt.getSource()).getA();
+                      int b = ((LucaButton) evt.getSource()).getB();
+                          if (w == 1) {
+                             if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && eA[a-1][b+4] == 0 && eA[a][b+4] == 0 && eA[a+1][b+4] == 0  && eA[a-1][b+5] == 0 && eA[a][b+5] == 0 && eA[a+1][b+5] == 0 && b+4<16) {
+                             eA[a][b] = 1;
+                             eA[a][b+1] = 1;
+                             eA[a][b+2] = 1;
+                             eA[a][b+3] = 1;
+                             eA[a][b+4] = 1;
+                             schlachtschiff = 0;
+                             r--;
+                          } // end of if
+                          }
+                          else {
+                          if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b-1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a+3][b-1] == 0 && eA[a+3][b] == 0 && eA[a+3][b+1] == 0 && eA[a+4][b-1] == 0 && eA[a+4][b] == 0 && eA[a+4][b+1] == 0 && eA[a+5][b-1] == 0 && eA[a+5][b] == 0 && eA[a+5][b+1] == 0 && a+4<16) {
+                             eA[a][b] = 1;
+                             eA[a+1][b] = 1;
+                             eA[a+2][b] = 1;
+                             eA[a+3][b] = 1;
+                             eA[a+4][b] = 1;
+                             schlachtschiff = 0;
+                             r--;
+                             }
+                          } // end of if-else
+                  vergleicheFelder(); 
+                } // end of if
+            } // end of if
+            } // end of if 
         });
         cp.add(newButton);
         // Ende Komponenten
@@ -129,8 +217,6 @@ public class GUI extends JFrame {
   }
   
   public void vergleicheFelder(){
-    while (s<30) {
-    } // end of while
     for (int b = 1; b<15; b++) {
       for (int a = 1; a<15; a++) {
         if (eA[a][b] == 1) {
@@ -140,6 +226,7 @@ public class GUI extends JFrame {
     } // end of for
   }
   int r = 1;   // begrenzt Anzahl
+  int schlachtschiff = 0;
   
   public void setzteSchlachtschiff(){
     Container cp = getContentPane();
@@ -155,41 +242,22 @@ public class GUI extends JFrame {
     schlachtschiffButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == schlachtschiffButton){
-           if (r>0) {          
-              r--;
-              anzahlSchlachtschiff.setText("Noch "+r+" Schlachtschiffe übrig.");
+          uboot = 0;
+          kreuzer = 0;
+          zerstoerer = 0;
+          schlachtschiff = 1;
+           if (r>0) {
+            int r2 =r-1;          
+              anzahlSchlachtschiff.setText("Noch "+r2+" Schlachtschiffe übrig.");
            }
         }
       }
     });
     cp.add(schlachtschiffButton);
   }
-  /*
-  if (evt.getSource() == buttons){
-  if (s<30) {
-  int a = ((buttons) evt.getSource()).getA();
-  int b = ((buttons) evt.getSource()).getB();
-  if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
-  eA[a][b] = 1;
-  eA[a+1][b]= 1;
-  eA[a+2][b]= 1;
-  eA[a+3][b]= 1;
-  eA[a+4][b]= 1;
-  r--;
-  } // end of if
-  else {                   // Hebel waagerecht oder senkrecht auf senkrecht
-  eA[a][b]= 1;
-  eA[a][b+1]= 1;
-  eA[a][b+2]= 1;
-  eA[a][b+3]= 1;
-  eA[a][b+4]= 1;
-  r--;
-  } // end of if-else
-  }
-  } // end of if
-  */
   
   int h = 2;     // begrenzt Anzahl
+  int kreuzer = 0;
   
   public void setzteKreuzer(){
     Container cp = getContentPane();
@@ -205,35 +273,22 @@ public class GUI extends JFrame {
     kreuzerButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == kreuzerButton){
+           uboot = 0;
+           kreuzer = 1;
+           zerstoerer = 0;
+           schlachtschiff = 0;
            if (h>0) {
-              h--;
-              anzahlKreuzer.setText("Noch "+h+" Kreuzer übrig.");
+            int h2 = h-1;
+              anzahlKreuzer.setText("Noch "+h2+" Kreuzer übrig.");
            }
         }
       }
     });
     cp.add(kreuzerButton);
   }
-  /*
-  if (get.source ) {         //angesteuerter Button
-  if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
-  eA[a][b] = 1;
-  eA[a+1][b]= 1;
-  eA[a+2][b]= 1;
-  eA[a+3][b]= 1;
-  k--;
-  } // end of if
-  else {                   // Hebel waagerecht oder senkrecht auf senkrecht
-  eA[a][b]= 1;
-  eA[a][b+1]= 1;
-  eA[a][b+2]= 1;
-  eA[a][b+3]= 1;
-  k--;
-  } // end of if-else
-  } // end of if
-  }
-  */
+  
   int z = 3;         // begrenzt Anzahl
+  int zerstoerer = 0;
   
   public void setzteZerstoerer(){
     Container cp = getContentPane();
@@ -249,42 +304,28 @@ public class GUI extends JFrame {
     zerstoererButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == zerstoererButton){
+           uboot = 0;
+           kreuzer = 0;
+           zerstoerer = 1;
+           schlachtschiff = 0;
            if (z>0) {
-              z--;
-              anzahlZerstoerer.setText("Noch "+z+" Zerstörer übrig.");
+              int z2 =z-1;
+              anzahlZerstoerer.setText("Noch "+z2+" Zerstörer übrig.");
            }
         }
       }
     });
     cp.add(zerstoererButton);
   }
-  /*
-  if (z<0) {
-  if (get.source ) {         //angesteuerter Button 
-  if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
-  eA[a][b] = 1;
-  eA[a+1][b]= 1;
-  eA[a+2][b]= 1;
-  z--;
-  } // end of if
-  else {                 // Hebel waagerecht oder senkrecht auf senkrecht
-  eA[a][b]= 1;
-  eA[a][b+1]= 1;
-  eA[a][b+2]= 1;
-  z--;
-  } // end of if-else
-  } // end of if
-  }
-  }
-  */
   
   int u = 4;      // begrenzt Anzahl
+  int uboot = 0;
   
   public void setzteUBoot(){
     Container cp = getContentPane();
     final JTextField anzahlUBoote = new JTextField();
     anzahlUBoote.setBounds(1120, 930, 200, 40);
-    anzahlUBoote.setText("Noch "+u+" U-Boote übrig.");
+    anzahlUBoote.setText("Noch 4 U-Boote übrig.");
     cp.add(anzahlUBoote);
     final JButton ubootButton = new JButton();
     ubootButton.setBounds(1120, 750, 200, 120);
@@ -294,39 +335,26 @@ public class GUI extends JFrame {
     ubootButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == ubootButton){
-           if (u>0 & u!=2) {          
-              u--;
-              anzahlUBoote.setText("Noch "+u+" U-Boote übrig.");
+          uboot = 1;
+          kreuzer = 0;
+          zerstoerer = 0;
+          schlachtschiff = 0;
+           if (u>0 & u!=2) {
+             int u2 = u-1;         
+             anzahlUBoote.setText("Noch "+u2+" U-Boote übrig.");
            }else{
-                u--;
-                anzahlUBoote.setText("Noch "+u+" U-Boot übrig.");  
+            if (u>0) {
+              int u2 = u-1;
+                anzahlUBoote.setText("Noch "+u2+" U-Boot übrig.");  
               }
+            } // end of if
         }
       }
     });
     cp.add(ubootButton);
   }
-  /*if (u<0) {
-  if (get.source ) {         //angesteuerter Button
-  if (waagerecht = true) { // Hebel waagerecht oder senkrecht auf waagerecht
-  eA[a][b] = 1;
-  eA[a+1][b]= 1;
-  eA[a+2][b]= 1;
-  u--;
-  } // end of if
-  else {                    // Hebel waagerecht oder senkrecht auf senkrecht
-  eA[a][b]= 1;
-  eA[a][b+1]= 1;
-  eA[a][b+2]= 1;
-  u--;
-  } // end of if-else
-  } // end of if
-  }
-  }
-  */
   
-   int w=0;
-  
+  int w=0;
     
   public void ausrichtung(){
      Container cp = getContentPane();
@@ -336,8 +364,7 @@ public class GUI extends JFrame {
     ausrichtungButton.setMargin(new Insets(2, 2, 2, 2));
     ausrichtungButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
-        if (ae.getSource() == ausrichtungButton){
-          
+        if (ae.getSource() == ausrichtungButton){ 
           if (w==1) {                                      //w=1  => waagerecht
             ausrichtungButton.setText("waagerecht");
             w=0;
