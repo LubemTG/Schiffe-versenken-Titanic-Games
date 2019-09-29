@@ -52,6 +52,7 @@ public class GUI extends JFrame {
     setzteKreuzer();
     setzteZerstoerer();
     setzteUBoot();
+    ausrichtung();
     setVisible(true);
     
   }
@@ -128,10 +129,7 @@ public class GUI extends JFrame {
   }
   
   public void vergleicheFelder(){
-    int g =0;
-    while (s<30) { 
-      g++;
-      System.out.println('g');
+    while (s<30) {
     } // end of while
     for (int b = 1; b<15; b++) {
       for (int a = 1; a<15; a++) {
@@ -144,8 +142,12 @@ public class GUI extends JFrame {
   int r = 1;   // begrenzt Anzahl
   
   public void setzteSchlachtschiff(){
-    final JButton schlachtschiffButton = new JButton();
     Container cp = getContentPane();
+    final JTextField anzahlSchlachtschiff = new JTextField();
+    anzahlSchlachtschiff.setBounds(50, 930, 200, 40);
+    anzahlSchlachtschiff.setText("Noch "+r+" Schlachtschiff übrig.");
+    cp.add(anzahlSchlachtschiff);
+    final JButton schlachtschiffButton = new JButton();
     schlachtschiffButton.setBounds(50, 700, 390, 220);
     schlachtschiffButton.setText("");
     schlachtschiffButton.setMargin(new Insets(2, 2, 2, 2));
@@ -153,14 +155,17 @@ public class GUI extends JFrame {
     schlachtschiffButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == schlachtschiffButton){
+           if (r>0) {          
+              r--;
+              anzahlSchlachtschiff.setText("Noch "+r+" Schlachtschiffe übrig.");
+           }
         }
       }
     });
     cp.add(schlachtschiffButton);
   }
   /*
-  public void setzteSchlachtschiff(){if
-  (evt.getSource() == buttons){
+  if (evt.getSource() == buttons){
   if (s<30) {
   int a = ((buttons) evt.getSource()).getA();
   int b = ((buttons) evt.getSource()).getB();
@@ -184,11 +189,15 @@ public class GUI extends JFrame {
   } // end of if
   */
   
-  //int k =2;     // begrenzt Anzahl
+  int h = 2;     // begrenzt Anzahl
   
   public void setzteKreuzer(){
-    final JButton kreuzerButton = new JButton();
     Container cp = getContentPane();
+    final JTextField anzahlKreuzer = new JTextField();
+    anzahlKreuzer.setBounds(490, 930, 200, 40);
+    anzahlKreuzer.setText("Noch "+h+" Kreuzer übrig.");
+    cp.add(anzahlKreuzer);
+    final JButton kreuzerButton = new JButton();
     kreuzerButton.setBounds(490, 710, 300, 200);
     kreuzerButton.setText("");
     kreuzerButton.setMargin(new Insets(2, 2, 2, 2));
@@ -196,6 +205,10 @@ public class GUI extends JFrame {
     kreuzerButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == kreuzerButton){
+           if (h>0) {
+              h--;
+              anzahlKreuzer.setText("Noch "+h+" Kreuzer übrig.");
+           }
         }
       }
     });
@@ -219,12 +232,16 @@ public class GUI extends JFrame {
   } // end of if-else
   } // end of if
   }
-  
-  int z = ;         // begrenzt Anzahl
   */
+  int z = 3;         // begrenzt Anzahl
+  
   public void setzteZerstoerer(){
-    final JButton zerstoererButton = new JButton();
     Container cp = getContentPane();
+    final JTextField anzahlZerstoerer = new JTextField();
+    anzahlZerstoerer.setBounds(840, 930, 200, 40);
+    anzahlZerstoerer.setText("Noch "+z+" Zerstörer übrig.");
+    cp.add(anzahlZerstoerer);
+    final JButton zerstoererButton = new JButton();
     zerstoererButton.setBounds(840, 730, 230, 160);
     zerstoererButton.setText("");
     zerstoererButton.setMargin(new Insets(2, 2, 2, 2));
@@ -232,6 +249,10 @@ public class GUI extends JFrame {
     zerstoererButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == zerstoererButton){
+           if (z>0) {
+              z--;
+              anzahlZerstoerer.setText("Noch "+z+" Zerstörer übrig.");
+           }
         }
       }
     });
@@ -262,8 +283,8 @@ public class GUI extends JFrame {
   public void setzteUBoot(){
     Container cp = getContentPane();
     final JTextField anzahlUBoote = new JTextField();
-    anzahlUBoote.setBounds(1120, 880, 200, 40);
-    anzahlUBoote.setText("Noch "+u+" Schlachtschiffe übrig.");
+    anzahlUBoote.setBounds(1120, 930, 200, 40);
+    anzahlUBoote.setText("Noch "+u+" U-Boote übrig.");
     cp.add(anzahlUBoote);
     final JButton ubootButton = new JButton();
     ubootButton.setBounds(1120, 750, 200, 120);
@@ -273,6 +294,13 @@ public class GUI extends JFrame {
     ubootButton.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent ae) { 
         if (ae.getSource() == ubootButton){
+           if (u>0 & u!=2) {          
+              u--;
+              anzahlUBoote.setText("Noch "+u+" U-Boote übrig.");
+           }else{
+                u--;
+                anzahlUBoote.setText("Noch "+u+" U-Boot übrig.");  
+              }
         }
       }
     });
@@ -296,6 +324,34 @@ public class GUI extends JFrame {
   }
   }
   */
+  
+   int w=0;
+  
+    
+  public void ausrichtung(){
+     Container cp = getContentPane();
+    final JButton ausrichtungButton = new JButton();
+    ausrichtungButton.setBounds(50, 630, 100, 40);
+    ausrichtungButton.setText("waagerecht");
+    ausrichtungButton.setMargin(new Insets(2, 2, 2, 2));
+    ausrichtungButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == ausrichtungButton){
+          
+          if (w==1) {                                      //w=1  => waagerecht
+            ausrichtungButton.setText("waagerecht");
+            w=0;
+          } // end of if
+          else {
+            ausrichtungButton.setText("senkrecht");
+            w=1;
+          } // end of if-else
+        }
+      }
+    });
+    cp.add(ausrichtungButton);
+  }
+    
   public static void main(String[] args){
     GUI meinGUI= new GUI("Schiffe versenken");
     meinGUI.vergleicheFelder();
