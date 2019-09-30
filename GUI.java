@@ -27,6 +27,8 @@ public class GUI extends JFrame {
   
   int b = 0;
   
+  int s = 0;
+  
   private LucaButton[][] buttons = new LucaButton[15][15];
   private LucaButton[][] gegnerbuttons = new LucaButton[15][15];
   
@@ -52,6 +54,10 @@ public class GUI extends JFrame {
     setzteZerstoerer();
     setzteUBoot();
     ausrichtung();
+    neustart();
+    schiffEntfernen();
+    bereit();
+    background();
     setVisible(true);
     
   }
@@ -76,26 +82,131 @@ public class GUI extends JFrame {
           public void actionPerformed(ActionEvent evt) {
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-                if (uboot == 1) {
-                   if (u>0) {
                   int a = ((LucaButton) evt.getSource()).getA();
                   int b = ((LucaButton) evt.getSource()).getB();
-                  if (w == 1) {
-                    if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && b+1<16) {
-                      eA[a][b] = 1;
-                      eA[a][b+1] = 1;
-                      uboot = 0;
-                      u--;
-                    } // end of if
-                  } // end of if
-                  else {
-                    if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && a+1<16) {
-                    eA[a][b] = 1;
-                    eA[a+1][b] = 1;
-                    uboot = 0;
-                    u--;
+                if (schiffEntfernen == 1) {
+                   if (eA[a][b]==1) {
+                      int laenge = 0;
+                      eA[a][b]=0;
+                      s--;
+                      laenge++;            
+                      if (eA[a+1][b]==1) {
+                         eA[a+1][b]=0;
+                         s--;
+                         laenge++;
+                        if (eA[a+2][b]==1) {
+                          eA[a+2][b]=0;
+                          s--;
+                          laenge++;
+                          if (eA[a+3][b]==1) {
+                             eA[a+3][b]=0;
+                             s--;
+                             laenge++;
+                            if (eA[a+4][b]==1) {
+                              eA[a+4][b]=0;
+                              s--;
+                              laenge++;
+                            } // end of if
+                          } // end of if
+                        } // end of if
+                      } // end of if
+                      if (eA[a-1][b]==1) {
+                         eA[a-1][b]=0;
+                         s--;
+                         laenge++;
+                        if (eA[a-2][b]==1) {
+                          eA[a-2][b]=0;
+                          s--;
+                          laenge++;
+                          if (eA[a-3][b]==1) {
+                             eA[a-3][b]=0;
+                             s--;
+                             laenge++;
+                            if (eA[a-4][b]==1) {
+                              eA[a-4][b]=0;
+                              s--;
+                              laenge++;
+                            } // end of if
+                          } // end of if
+                        } // end of if
+                      } // end of if
+                      if (eA[a][b+1]==1) {
+                         eA[a][b+1]=0;
+                         s--;
+                         laenge++;
+                        if (eA[a][b+2]==1) {
+                          eA[a][b+2]=0;
+                          s--;
+                          laenge++;
+                          if (eA[a][b+3]==1) {
+                             eA[a][b+3]=0;
+                             s--;
+                             laenge++;
+                            if (eA[a][b+4]==1) {
+                              eA[a][b+4]=0;
+                              s--;
+                              laenge++;
+                            } // end of if
+                          } // end of if
+                        } // end of if
+                      } // end of if
+                       if (eA[a][b-1]==1) {
+                         eA[a][b-1]=0;
+                         s--;
+                         laenge++;
+                        if (eA[a][b-2]==1) {
+                          eA[a][b-2]=0;
+                          s--;
+                          laenge++;
+                          if (eA[a][b-3]==1) {
+                             eA[a][b-3]=0;
+                             s--;
+                             laenge++;
+                            if (eA[a][b-4]==1) {
+                              eA[a][b-4]=0;
+                              s--;
+                              laenge++;
+                            } // end of if
+                          } // end of if
+                        } // end of if
+                      } // end of if
+                      vergleicheFelderWasser();
+                      schiffEntfernen = 0;
+                      if (laenge == 2) {
+                        u++;
+                      } // end of if
+                      if (laenge == 3) {
+                        z++;
+                      } // end of if
+                      if (laenge == 4) {
+                        h++;
+                      } // end of if
+                      if (laenge == 5) {
+                        r++;
+                      } // end of if
+                   } // end of if
+                } // end of if
+                if (uboot == 1) {
+                   if (u>0) {
+                      setzteUBoot();
+                      if (w == 1) {
+                         if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && b+1<16) {
+                            eA[a][b] = 1;
+                            eA[a][b+1] = 1;
+                            uboot = 0;
+                            u--;
+                            s = s+2;
+                            } // end of if
+                            } // end of if
+                      else {
+                           if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a+2][b+1] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a+2][b] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+2][b+1] == 0 && a+1<16) {
+                            eA[a][b] = 1;
+                            eA[a+1][b] = 1;
+                            uboot = 0;
+                            u--;
+                            s = s+2;
                       }
-                  } // end of if-else
+                    } // end of if-else 
                   vergleicheFelder();
                   
                 } 
@@ -103,8 +214,6 @@ public class GUI extends JFrame {
             } // end of if
             if (zerstoerer == 1) {
                    if (z>0) {
-                      int a = ((LucaButton) evt.getSource()).getA();
-                      int b = ((LucaButton) evt.getSource()).getB();
                        if (w == 1) {
                           if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && b+2<16) {
                              eA[a][b] = 1;
@@ -112,6 +221,7 @@ public class GUI extends JFrame {
                              eA[a][b+2] = 1;
                              zerstoerer = 0;
                              z--;
+                             s = s+3;
                           }
                        } // end of if
                        else {
@@ -121,6 +231,7 @@ public class GUI extends JFrame {
                              eA[a+2][b] = 1;
                              zerstoerer = 0;
                              z--;
+                             s = s+3;
                     }
                   } // end of if-else
                   vergleicheFelder();
@@ -128,8 +239,6 @@ public class GUI extends JFrame {
                 } // end of if
                 if (kreuzer == 1) {
                    if (h>0) {
-                      int a = ((LucaButton) evt.getSource()).getA();
-                      int b = ((LucaButton) evt.getSource()).getB();
                           if (w == 1) {
                           if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && eA[a-1][b+4] == 0 && eA[a][b+4] == 0 && eA[a+1][b+4] == 0  && b+3<16) {
                              eA[a][b] = 1;
@@ -138,6 +247,7 @@ public class GUI extends JFrame {
                              eA[a][b+3] = 1;
                              kreuzer = 0;
                              h--;
+                             s = s+4;
                              }
                           } // end of if
                           else {
@@ -147,7 +257,8 @@ public class GUI extends JFrame {
                              eA[a+2][b] = 1;
                              eA[a+3][b] = 1;
                              kreuzer = 0;
-                             h--;     
+                             h--; 
+                             s = s+4;    
                              }
                           } // end of if-else
                   vergleicheFelder(); 
@@ -155,8 +266,6 @@ public class GUI extends JFrame {
             } // end of if
             if (schlachtschiff == 1) {
                    if (r>0) {
-                      int a = ((LucaButton) evt.getSource()).getA();
-                      int b = ((LucaButton) evt.getSource()).getB();
                           if (w == 1) {
                              if (eA[a-1][b-1] == 0 && eA[a-1][b] == 0 && eA[a-1][b+1] == 0 && eA[a-1][b+2] == 0 && eA[a][b-1] == 0 && eA[a][b] == 0 && eA[a][b+1] == 0 && eA[a][b+2] == 0 && eA[a+1][b-1] == 0 && eA[a+1][b] == 0 && eA[a+1][b+1] == 0 && eA[a+1][b+2] == 0 && eA[a-1][b+3] == 0 && eA[a][b+3] == 0 && eA[a+1][b+3] == 0 && eA[a-1][b+4] == 0 && eA[a][b+4] == 0 && eA[a+1][b+4] == 0  && eA[a-1][b+5] == 0 && eA[a][b+5] == 0 && eA[a+1][b+5] == 0 && b+4<16) {
                              eA[a][b] = 1;
@@ -166,6 +275,7 @@ public class GUI extends JFrame {
                              eA[a][b+4] = 1;
                              schlachtschiff = 0;
                              r--;
+                             s = s+5;
                           } // end of if
                           }
                           else {
@@ -177,9 +287,10 @@ public class GUI extends JFrame {
                              eA[a+4][b] = 1;
                              schlachtschiff = 0;
                              r--;
+                             s = s+5;
                              }
                           } // end of if-else
-                  vergleicheFelder(); 
+                  vergleicheFelder();
                 } // end of if
             } // end of if
             } // end of if 
@@ -207,7 +318,14 @@ public class GUI extends JFrame {
           public void actionPerformed(ActionEvent evt) { 
             newButton_ActionPerformed(evt);
             if (evt.getSource() == newButton){
-              newButton.setIcon(new ImageIcon("Wasser-Icon.png"));
+              int a = ((LucaButton) evt.getSource()).getA();
+              int b = ((LucaButton) evt.getSource()).getB();
+                if (gA[a][b]>0) {
+                  newButton.setIcon(new ImageIcon("treffer grafik.png"));
+                } // end of if
+                if (gA[a][b]==0) {
+                  newButton.setIcon(new ImageIcon("wasser-icon.png"));             
+                } // end of if
             }
           }
         });
@@ -225,6 +343,17 @@ public class GUI extends JFrame {
       } // end of for
     } // end of for
   }
+  
+  public void vergleicheFelderWasser(){
+    for (int b = 1; b<15; b++) {
+      for (int a = 1; a<15; a++) {
+        if (eA[a][b] == 0) {
+          buttons[a][b].setIcon(new ImageIcon("wasser-icon.png"));
+        } // end of if
+      } // end of for
+    } // end of for
+  }
+  
   int r = 1;   // begrenzt Anzahl
   int schlachtschiff = 0;
   
@@ -377,6 +506,84 @@ public class GUI extends JFrame {
       }
     });
     cp.add(ausrichtungButton);
+  }
+  
+  public void neustart(){
+     Container cp = getContentPane();
+    final JButton neustartButton = new JButton();
+    neustartButton.setBounds(200, 630, 100, 40);
+    neustartButton.setText("Neustart");
+    neustartButton.setMargin(new Insets(2, 2, 2, 2));
+    neustartButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == neustartButton){ 
+          for (int b = 1; b<15; b++) {
+            for (int a = 1; a<15; a++) {
+              buttons[a][b].setIcon(new ImageIcon("wasser-icon.png"));
+              eA[a][b]=0;
+              u = 4;
+              uboot = 0;
+              z = 3;
+              zerstoerer = 0;
+              h = 2;
+              kreuzer = 0;
+              r = 1;
+              schlachtschiff = 0;
+              s = 0;
+      } // end of for
+          } // end of for
+        }
+      }
+    });
+    cp.add(neustartButton);
+  }
+  
+  int schiffEntfernen = 0;
+  
+  public void schiffEntfernen(){
+     Container cp = getContentPane();
+    final JButton schiffEntfernenButton = new JButton();
+    schiffEntfernenButton.setBounds(350, 630, 100, 40);
+    schiffEntfernenButton.setText("Schiff entfernen");
+    schiffEntfernenButton.setMargin(new Insets(2, 2, 2, 2));
+    schiffEntfernenButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == schiffEntfernenButton){ 
+          schiffEntfernen = 1;
+          uboot = 0;
+          zerstoerer = 0;
+          kreuzer = 0;
+          schlachtschiff = 0;
+          }
+      }
+    });
+    cp.add(schiffEntfernenButton);
+  }
+  
+  public void bereit(){
+     Container cp = getContentPane();
+    final JButton bereitButton = new JButton();
+    bereitButton.setBounds(500, 630, 100, 40);
+    bereitButton.setText("Bereit!");
+    bereitButton.setMargin(new Insets(2, 2, 2, 2));
+    bereitButton.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent ae) { 
+        if (ae.getSource() == bereitButton){
+          if (s == 30) {
+            bereitButton.setText("Viel Spaß!");
+          } // end of if
+          }
+      }
+    });
+    cp.add(bereitButton);
+  }
+  
+  public void background(){
+    Container cp = getContentPane();
+    final JLabel background = new JLabel();
+    background.setBounds(0, 0, 1680, 1050);
+    background.setIcon(new ImageIcon("game-background.png"));
+    cp.add(background);
   }
     
   public static void main(String[] args){
